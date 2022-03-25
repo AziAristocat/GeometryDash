@@ -42,7 +42,9 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor {
         if(!(sender instanceof Player)) return false;  //senderがプレイヤーのインスタンスでなければ実行失敗
         Player player = (Player) sender;  //senderをプレイヤーとしてキャスト
         playerlocation=player.getLocation();
-        SpawnSlime.cube(playerlocation);
+        World w = getServer().getWorld("GeoDash");
+        Location startlocation = new Location(w, 0,4,0);
+        SpawnSlime.cube(startlocation);
         player.sendMessage("start!!");
         BukkitTask SpawnPillar = new SpawnPillar(this).runTaskTimer(this, 1L, 20L);
 

@@ -27,9 +27,10 @@ public class SpawnPillar extends BukkitRunnable {
         Location playerlocation = GeometryDash.playerlocation;
         Slime slime = SpawnSlime.slime;
         Location loc = slime.getLocation();
+        loc.add(10,0,0);
         Location closest = closestBlock(loc, Material.DIAMOND_BLOCK);
 
-        getServer().broadcastMessage(slime.getName());
+//        getServer().broadcastMessage(slime.getName());
 
 
 
