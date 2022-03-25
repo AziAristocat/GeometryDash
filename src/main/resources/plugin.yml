@@ -1,0 +1,23 @@
+name: GeometryDash
+version: '${project.version}'
+main: com.githubaziaristocat.geometrydash.GeometryDash
+api-version: 1.17
+authors: [ AziAristocat ]
+description: GeometryDash in Minecraft!!!!!
+website: https://github.com/AziAristocat
+commands:
+  playgeod:
+    description: Put your item in the main hand to the head.
+    aliases: [play]
+    permission: geometrydash.command.playgeod
+    permission-message: You do not have permission to perform this command.
+    usage: /play (the sender of this command needs to be a player.)
+
+permissions:
+  geometrydash.command.*:
+    description: Allows you to perform commands in this plugin.
+    children:
+      geometrydash.command.playgeod: true
+  geometrydash.command.playgeod:
+    description: Allows you to perform /playgeod command.
+    default: true
