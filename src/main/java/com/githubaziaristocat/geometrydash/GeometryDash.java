@@ -34,8 +34,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor {
 
         registerEvents();
         // Plugin startup logic
-        getServer().broadcastMessage( "Natto osuki???!!!" );
-        getCommand("playgeod").setExecutor(this);
+        getCommand("geodplay").setExecutor(this);
         BukkitTask SpawnPillar = new RepeatCast(this).runTaskTimer(this, 1L, 1L);
 
     }
