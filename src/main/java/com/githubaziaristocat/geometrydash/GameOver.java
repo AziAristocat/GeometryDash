@@ -19,6 +19,8 @@ public class GameOver {
             player.teleport(loc);
             SpawnSlime.slime.setSize(0);
             SpawnSlime.slime.setHealth(0);
+            CameraMover.y = 5;
+            CameraMover.ay = 0;
             SpawnSlime.slime = null;
         }
         }
