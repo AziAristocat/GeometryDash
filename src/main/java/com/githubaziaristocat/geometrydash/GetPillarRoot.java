@@ -16,7 +16,7 @@ public class GetPillarRoot {
 //     * @return The closest block, or null if one was not found in the column.
 //     *         In the case of a tie, the higher block wins.
 //     */
-    public static Location closestBlock(Location origin, Material mat) {
+    public static Location closestRoot(Location origin, Material mat) {
         int x = origin.getBlockX();
         int y = origin.getBlockY();
         int z = origin.getBlockZ();

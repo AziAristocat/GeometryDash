@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Slime;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -19,6 +20,7 @@ public class SpawnSlime {
             slime.setSize(2);
             slime.setWander(false);
             slime.setCustomName("GEODY");
+
 
     }
 }

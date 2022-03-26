@@ -4,64 +4,74 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Slime;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Optional;
-
-import static com.githubaziaristocat.geometrydash.GetPillarRoot.closestBlock;
+import static com.githubaziaristocat.geometrydash.GetPillarRoot.closestRoot;
 import static org.bukkit.Bukkit.getServer;
 
-public class SpawnPillar extends BukkitRunnable {
-    GeometryDash plugin;
-    public SpawnPillar(GeometryDash plugin){
-        this.plugin = plugin;
+public class SpawnPillar {
+
+    public static void Spawn(Location loc) {
 
 
-    }
-
-    @Override
-    public void run() {
         World w = getServer().getWorld("GeoDash");
-        Location playerlocation = GeometryDash.playerlocation;
         Slime slime = SpawnSlime.slime;
-        Location loc = slime.getLocation();
-        loc.add(10,0,0);
-        Location closest = closestBlock(loc, Material.DIAMOND_BLOCK);
+        if (slime != null) {
 
+            ;
+
+
+            if (closestRoot(loc, Material.DIAMOND_BLOCK) != null) {
+
+                Location closest = closestRoot(loc, Material.DIAMOND_BLOCK);
+                for (int y = 1; y < 5; y++) {
+                    if (y == 4) {
+                        Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
+                        pillarroot.getBlock().setType(Material.OBSIDIAN);
+                    } else {
+                        Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
+                        pillarroot.getBlock().setType(Material.IRON_BLOCK);
+
+                    }
+                }
+            }
+            if (closestRoot(loc, Material.PRISMARINE_BRICKS) != null) {
+                Location closest = closestRoot(loc, Material.PRISMARINE_BRICKS);
+                for (int y = 1; y < 5; y++) {
+                    Location pillarroot = new Location(w, closest.getX(), closest.getY() - y, closest.getZ());
+                    pillarroot.getBlock().setType(Material.IRON_BLOCK);
+
+
+                }
+            }
+            //for map making
+        } else {
+            if (loc.getBlock().getType() == Material.DIAMOND_BLOCK) {
+                for (int y = 1; y < 5; y++) {
+                    if (y == 4) {
+                        Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
+                        pillarroot.getBlock().setType(Material.OBSIDIAN);
+                    } else {
+                        Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
+                        pillarroot.getBlock().setType(Material.IRON_BLOCK);
+
+                    }
+                }
+            }
+
+                            else if (loc.getBlock().getType() == Material.PRISMARINE_BRICKS) {
+
+            for (int y = 1; y < 5; y++) {
+                Location pillarroot = new Location(w, loc.getX(), loc.getY() - y, loc.getZ());
+                pillarroot.getBlock().setType(Material.IRON_BLOCK);
+
+
+            }
+        }
+    }
 //        getServer().broadcastMessage(slime.getName());
 
 
 
-        for (int y = 1; y < 5; y++) {
-            Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
-            pillarroot.getBlock().setType(Material.IRON_BLOCK);
-        }
 
-        String slimex = String.valueOf(closest.getX());
-        getServer().broadcastMessage(slimex);
-
-        if(w.getNearbyEntitiesByType(Slime.class,playerlocation, 10 )==null) {
-            cancel();
-        }
-        }
     }
-
-
-//        new GetPillarRoot();
-//        World w = getServer().getWorld("GeoDash");
-//        Location playerlocation = StartGame.loc;
-//        Slime slime = (Slime) w.getNearbyEntities(playerlocation, 10, 10, 10);
-//        Location loc = slime.getLocation();
-////        Location closest = closestBlock(loc, new HashSet<Material>(Arrays.<Material>asList(Material.BARRIER.getData())));
-//        Location closest = closestBlock(loc, Material.BARRIER);
-//        for (int y = 1; y < 5; y++) {
-//            Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
-//            pillarroot.getBlock().setType(Material.DIAMOND_BLOCK);
-//        }
-//        String slimex = String.valueOf(closest.getX());
-//        getServer().broadcastMessage(slimex);
-
-
-
+}
