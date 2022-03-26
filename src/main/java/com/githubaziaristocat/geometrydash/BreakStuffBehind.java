@@ -3,7 +3,7 @@ package com.githubaziaristocat.geometrydash;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
-public class BreakBehindStuff {
+public class BreakStuffBehind {
     public static void Break(){
         Location CheckPos = SpawnSlime.slime.getLocation().add(-5,0,0);
         Location BreakUp = GetPillarRoot.closestRoot(CheckPos, Material.DIAMOND_BLOCK);

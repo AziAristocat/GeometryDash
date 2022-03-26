@@ -2,7 +2,6 @@ package com.githubaziaristocat.geometrydash;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Slime;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import static org.bukkit.Bukkit.getServer;
@@ -25,8 +24,8 @@ public class RepeatCast extends BukkitRunnable {
             MoveSlime.move();
             CameraMover.Mover();
             GameOver.Over();
-            AutoPiston.Launcher();
-            BreakBehindStuff.Break();
+            SlimeLauncher.Launcher();
+            BreakStuffBehind.Break();
         }
         if(GeometryDash.PlayerID!=null) {
             MapMaking.placer();

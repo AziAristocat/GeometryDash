@@ -3,13 +3,10 @@ package com.githubaziaristocat.geometrydash;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.Powerable;
-import org.bukkit.block.data.type.Piston;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class AutoPiston {
+public class SlimeLauncher {
 
     public static void Launcher(){
         World w = getServer().getWorld("GeoDash");
