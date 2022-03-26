@@ -82,10 +82,11 @@ public class MapMaking implements Listener {
                     }else if(y2<0){
                         y2 = 0;
                     }
+                    String name = player.getName();
                     String playerY1 = Integer.toString(y1);
                     String playerY2 = Integer.toString(y2);
-                    String command1 = "fill "+ playerX1 +" " + playerY1 +" 0 " + playerX2 +" "+ playerY2 + " 0 air replace minecraft:iron_block";
-                    String command2 = "fill "+ playerX1 +" " + playerY1 +" 0 " + playerX2 +" "+playerY2+ " 0 air replace minecraft:obsidian";
+                    String command1 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" 0 " + playerX2 +" "+ playerY2 + " 0 air replace minecraft:iron_block";
+                    String command2 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" 0 " + playerX2 +" "+playerY2+ " 0 air replace minecraft:obsidian";
                     Bukkit.dispatchCommand(console, command1);
                     Bukkit.dispatchCommand(console, command2);
                 }
