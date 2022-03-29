@@ -12,7 +12,7 @@ public class CameraMover {
     public static double ay = 0;
     public static double y = 5;
     public static void Mover(){
-        Player player = Bukkit.getPlayer(GeometryDash.PlayerID);
+        Player player = GeometryDash.player;
         if(player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL){
             if(player.getLocation().getY()>SpawnSlime.slime.getLocation().getY() && ay>=-0.1){
                 ay-=0.01;

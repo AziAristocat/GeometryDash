@@ -27,7 +27,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor {
 
     public static Location loc;
     public static Location playerlocation;
-    public static UUID PlayerID;
+    public static Player player;
 
     @Override
     public void onEnable() {
@@ -35,8 +35,6 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor {
         registerEvents();
         // Plugin startup logic
         getCommand("geodplay").setExecutor(this);
-        BukkitTask SpawnPillar = new RepeatCast(this).runTaskTimer(this, 1L, 1L);
-
     }
 
     @Override
@@ -51,12 +49,12 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor {
         if(!(sender instanceof Player)) return false;
         Player player = (Player) sender;
         playerlocation=player.getLocation();
-        PlayerID= player.getUniqueId();
+        GeometryDash.player = player;
         World w = getServer().getWorld("GeoDash");
         Location startlocation = new Location(w, 0,4,0);
         SpawnSlime.cube(startlocation);
         player.sendMessage("start!!");
-        BukkitTask SpawnPillar = new RepeatCast(this).runTaskTimer(this, 1L, 20L);
+        BukkitTask repeat = new RepeatCast(this).runTaskTimer(this, 1L, 1L);
         player.getInventory().setHeldItemSlot(1);
         player.getInventory().setItem(1, new ItemStack(Material.SLIME_BALL,1));
         return true;

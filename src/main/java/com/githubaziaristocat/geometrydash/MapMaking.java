@@ -101,8 +101,8 @@ public class MapMaking implements Listener {
     }
     public static void placer(){
         World w = getServer().getWorld("GeoDash");
-        if(GeometryDash.PlayerID!=null) {
-            Player player = Bukkit.getPlayer(GeometryDash.PlayerID);
+        if(GeometryDash.player!=null) {
+            Player player = GeometryDash.player;
 
             if (player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BLOCK) {
                 Location loc = new Location(w, player.getLocation().getX(), player.getLocation().getY(), 0);

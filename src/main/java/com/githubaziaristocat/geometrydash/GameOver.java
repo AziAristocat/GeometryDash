@@ -11,7 +11,7 @@ import static org.bukkit.Bukkit.getServer;
 public class GameOver {
     public static void Over() {
         World w = getServer().getWorld("GeoDash");
-        Player player = Bukkit.getPlayer(GeometryDash.PlayerID);
+        Player player = GeometryDash.player;
         Location trap = SpawnSlime.slime.getLocation().add(0.8,0,0);
         if(SpawnSlime.slime != null && player.getEquipment().getItemInMainHand().getType() != Material.SLIME_BALL || w.getBlockAt(trap).getType()==Material.IRON_BLOCK || w.getBlockAt(trap).getType()==Material.NETHER_BRICK|| w.getBlockAt(trap.add(0,0.8,0)).getType()==Material.IRON_BLOCK) {
             //if unequip slime ball or slime touches iron then game over.

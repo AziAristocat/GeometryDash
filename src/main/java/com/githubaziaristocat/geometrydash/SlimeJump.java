@@ -25,7 +25,7 @@ public class SlimeJump implements Listener {
         if(event.getAction() == Action.LEFT_CLICK_AIR){
             Player player = event.getPlayer();
 
-            if (player.getUniqueId() == GeometryDash.PlayerID){
+            if (player == GeometryDash.player){
                 //if command sender = left clicker
                 if(SpawnSlime.slime != null && SlimeStatusChecker.isJumpable == true && player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL) {
                   //  player.sendMessage("Jump!!!");

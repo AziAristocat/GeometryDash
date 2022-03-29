@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 public class BreakStuffBehind {
     public static void Break(){
-        Location CheckPos = SpawnSlime.slime.getLocation().add(-5,0,0);
+        Location CheckPos = SpawnSlime.slime.getLocation().add(-10,0,0);
         Location BreakUp = GetPillarRoot.closestRoot(CheckPos, Material.DIAMOND_BLOCK);
         Location BreakDown = GetPillarRoot.closestRoot(CheckPos, Material.PRISMARINE_BRICKS);
         if (BreakUp!=null) {
