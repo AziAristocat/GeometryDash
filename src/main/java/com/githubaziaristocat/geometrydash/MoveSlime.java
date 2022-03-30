@@ -4,8 +4,7 @@ import org.bukkit.entity.Slime;
 public class MoveSlime {
 
 
-    public static void move() {
-        Slime slime = SpawnSlime.slime;
+    public static void move(Slime slime) {
         double vectX = 0.2;
         if (slime != null) {
 

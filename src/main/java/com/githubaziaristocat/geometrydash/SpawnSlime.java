@@ -13,14 +13,14 @@ public class SpawnSlime {
 
 
 
-        public static void cube(Location loc){
+        public Slime cube(Location loc){
 
             World w = getServer().getWorld("GeoDash");
             slime = (Slime) w.spawnEntity(loc, EntityType.SLIME);
             slime.setSize(2);
             slime.setWander(false);
             slime.setCustomName("GEODY");
-
+        return slime;
 
     }
 }

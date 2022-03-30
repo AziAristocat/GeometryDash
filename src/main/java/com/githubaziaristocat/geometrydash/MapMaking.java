@@ -1,16 +1,17 @@
 package com.githubaziaristocat.geometrydash;
 
 
-import io.papermc.paper.event.block.BlockBreakBlockEvent;
-import net.md_5.bungee.api.chat.ItemTag;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentBuilder;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -19,8 +20,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.awt.*;
+
 import static org.bukkit.Bukkit.getServer;
-import static org.bukkit.Bukkit.getWorld;
 
 public class MapMaking implements Listener {
     World w = getServer().getWorld("GeoDash");
@@ -38,6 +40,15 @@ public class MapMaking implements Listener {
                 Location root1 = event1.getBlockPlaced().getLocation();
                 SpawnPillar.Spawn(root1);
             }
+        }
+        if(event1.getBlockPlaced().getState() instanceof Sign){
+            //https://www.spigotmc.org/threads/how-to-read-a-signs-lines.38741/
+            Sign sign = (Sign) event1.getBlockPlaced().getState();
+            player.sendMessage("command didn't work");
+            sign.line(0, Component.text("Left Click to Start"));
+
+
+
         }
     }
 
@@ -99,11 +110,9 @@ public class MapMaking implements Listener {
 
 
     }
-    public static void placer(){
+    public static void placer(Player player){
         World w = getServer().getWorld("GeoDash");
-        if(GeometryDash.player!=null) {
-            Player player = GeometryDash.player;
-
+        if(player!=null) {
             if (player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BLOCK) {
                 Location loc = new Location(w, player.getLocation().getX(), player.getLocation().getY(), 0);
                 SpawnPillar.Spawn(GetPillarRoot.closestRoot(loc, Material.DIAMOND_BLOCK));

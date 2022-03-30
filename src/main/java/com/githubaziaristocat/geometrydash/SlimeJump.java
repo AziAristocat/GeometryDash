@@ -16,25 +16,30 @@ import org.bukkit.util.Vector;
 
 public class SlimeJump implements Listener {
     private GeometryDash plugin;
-    public SlimeJump(GeometryDash plugin){
+    public static Slime slime;
+    public static Player player;
+    public SlimeJump(GeometryDash plugin, Player sender, Slime slimer){
         this.plugin = plugin;
+        player = sender;
+        slime = slimer;
+
+
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public static void onEvent(PlayerInteractEvent event) {
         if(event.getAction() == Action.LEFT_CLICK_AIR){
-            Player player = event.getPlayer();
 
-            if (player == GeometryDash.player){
+
                 //if command sender = left clicker
-                if(SpawnSlime.slime != null && SlimeStatusChecker.isJumpable == true && player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL) {
+                if(slime != null && SlimeStatusChecker.isJumpable == true && player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL) {
                   //  player.sendMessage("Jump!!!");
                     SlimeStatusChecker.gravity=0.73;  //jump height
 
                     SlimeStatusChecker.isJumpable = false;
                 }
 
-            }
+
 
 
         }

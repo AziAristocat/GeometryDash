@@ -26,3 +26,17 @@ aaaa
 
 
 Jumpable Boolean
+
+
+SpawnPillar reacts to any slime
+
+Game starts by clicking on a sign. This gets the start location and UUID of the player starting it
+
+Save player UUID to hashmap (UUID, slime)
+
+CameraMover will make player tp to the assigned slime
+
+Stop using SpawnSlime.slime but use
+
+When game starts, get player from hashmap and save spawned geod to hashmap
+

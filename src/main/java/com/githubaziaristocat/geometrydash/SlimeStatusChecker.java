@@ -11,9 +11,9 @@ public class SlimeStatusChecker {
     public static boolean isJumpable = false;
     public static double gravity;
 
-    public static void jumpable() {
+    public static void jumpable(Slime slime) {
 
-        Slime slime = SpawnSlime.slime;
+
         Location loc = slime.getLocation().add(0, -1, 0);
         World w = getServer().getWorld("GeoDash");
         if (slime != null && w.getBlockAt(loc).getType() != Material.AIR) {
