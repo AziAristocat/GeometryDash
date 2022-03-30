@@ -9,18 +9,16 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import static org.bukkit.Bukkit.getServer;
 
 public class SpawnSlime {
-    public static Slime slime;
 
 
-
-        public static void cube(Location loc){
+    public Slime cube(Location loc){
 
             World w = getServer().getWorld("GeoDash");
-            slime = (Slime) w.spawnEntity(loc, EntityType.SLIME);
+        Slime slime = (Slime) w.spawnEntity(loc, EntityType.SLIME);
             slime.setSize(2);
             slime.setWander(false);
             slime.setCustomName("GEODY");
-
+        return slime;
 
     }
 }

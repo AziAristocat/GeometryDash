@@ -14,13 +14,8 @@ public class SpawnPillar {
 
 
         World w = getServer().getWorld("GeoDash");
-        Slime slime = SpawnSlime.slime;
-        if (slime != null) {
 
-            ;
-
-
-            if (closestRoot(loc, Material.DIAMOND_BLOCK) != null) {
+      if (closestRoot(loc, Material.DIAMOND_BLOCK) != null) {
 
                 Location closest = closestRoot(loc, Material.DIAMOND_BLOCK);
                 for (int y = 1; y < 5; y++) {
@@ -44,21 +39,29 @@ public class SpawnPillar {
                 }
             }
             //for map making
-        } else {
-            if (loc.getBlock().getType() == Material.DIAMOND_BLOCK) {
-                for (int y = 1; y < 5; y++) {
-                    if (y == 4) {
-                        Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
-                        pillarroot.getBlock().setType(Material.OBSIDIAN);
-                    } else {
-                        Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
-                        pillarroot.getBlock().setType(Material.IRON_BLOCK);
 
-                    }
+//        getServer().broadcastMessage(slime.getName());
+
+
+
+
+    }
+    public static void Maker(Location loc){
+        World w = getServer().getWorld("GeoDash");
+        if (loc.getBlock().getType() == Material.DIAMOND_BLOCK) {
+            for (int y = 1; y < 5; y++) {
+                if (y == 4) {
+                    Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
+                    pillarroot.getBlock().setType(Material.OBSIDIAN);
+                } else {
+                    Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
+                    pillarroot.getBlock().setType(Material.IRON_BLOCK);
+
                 }
             }
+        }
 
-                            else if (loc.getBlock().getType() == Material.PRISMARINE_BRICKS) {
+        else if (loc.getBlock().getType() == Material.PRISMARINE_BRICKS) {
 
             for (int y = 1; y < 5; y++) {
                 Location pillarroot = new Location(w, loc.getX(), loc.getY() - y, loc.getZ());
@@ -67,10 +70,6 @@ public class SpawnPillar {
 
             }
         }
-    }
-//        getServer().broadcastMessage(slime.getName());
-
-
 
 
     }

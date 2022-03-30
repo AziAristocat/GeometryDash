@@ -1,5 +1,5 @@
 自分用メモ
-
+aaaa
 基本仕様:
 - [ ] 音楽に合わせる
 - [ ] 右方向にずっと一定速度で移動(NBTタグのvelocityでいけるか？)
@@ -26,3 +26,17 @@
 
 
 Jumpable Boolean
+
+
+SpawnPillar reacts to any slime
+
+Game starts by clicking on a sign. This gets the start location and UUID of the player starting it
+
+Save player UUID to hashmap (UUID, slime)
+
+CameraMover will make player tp to the assigned slime
+
+Stop using SpawnSlime.slime but use
+
+When game starts, get player from hashmap and save spawned geod to hashmap
+

@@ -11,7 +11,7 @@ commands:
     aliases: []
     permission: geometrydash.command.geodplay
     permission-message: You do not have permission to perform this command.
-    usage: /geodplay (the sender of this command needs to be a player.)
+    usage: /geodplay
 
 permissions:
   geometrydash.command.*:
