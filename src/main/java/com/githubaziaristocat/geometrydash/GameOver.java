@@ -10,7 +10,7 @@ import org.bukkit.entity.Slime;
 import static org.bukkit.Bukkit.getServer;
 
 public class GameOver {
-    public static boolean Over(Player player, Slime slime) {
+    public static boolean Over(Player player, Slime slime, Slime camera) {
 
         World w = getServer().getWorld("GeoDash");
         Location trap = slime.getLocation().add(0.8,0,0);
@@ -22,7 +22,10 @@ public class GameOver {
             slime.setHealth(0);
             CameraMover.y = 5;
             CameraMover.ay = 0;
+            camera.setSize(0);
+            camera.setHealth(0);
             slime = null;
+            camera = null;
             return true;
 
         }

@@ -5,7 +5,7 @@ public class MoveSlime {
 
 
     public static void move(Slime slime) {
-        double vectX = 0.2;
+        double vectX = 0.5;
         if (slime != null) {
 
             slime.setVelocity(new Vector(vectX, SlimeStatusChecker.gravity, 0));

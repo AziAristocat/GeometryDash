@@ -2,6 +2,7 @@ package com.githubaziaristocat.geometrydash;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -12,10 +13,12 @@ public class RepeatCast extends BukkitRunnable {
     GeometryDash plugin;
     public static Player player;
     public static Slime slime;
-    public RepeatCast(GeometryDash plugin, Player sender, Slime slimed){
+    public static Slime camera;
+    public RepeatCast(GeometryDash plugin, Player sender, Slime slimed, Slime camerad){
         this.plugin = plugin;
         player = sender;
         slime = slimed;
+        camera = camerad;
     }
 
 
@@ -24,20 +27,20 @@ public class RepeatCast extends BukkitRunnable {
         World w = getServer().getWorld("GeoDash");
         Player player = RepeatCast.player;
         Slime slime = RepeatCast.slime;
+        Slime camera = RepeatCast.camera;
         if(slime!=null) {
             SlimeStatusChecker.jumpable(slime);
-            SpawnPillar.Spawn(SpawnSlime.slime.getLocation().add(10,0,0));
+            SpawnPillar.Spawn(slime.getLocation().add(15,0,0));
             MoveSlime.move(slime);
-            CameraMover.Mover(player, slime);
+
             SlimeLauncher.Launcher(slime);
             BreakStuffBehind.Break(slime);
-                if(GameOver.Over(player, slime)) {
+            CameraMover.Mover(player, slime, camera);
+                if(GameOver.Over(player, slime, camera)) {
                 cancel();
                 }
             }
-        if(player!=null) {
-            MapMaking.placer(player);
-        }
+
 
 
 
