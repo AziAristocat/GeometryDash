@@ -26,16 +26,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.bukkit.Bukkit.getServer;
 import static org.bukkit.Bukkit.getWorld;
 
 public final class GeometryDash extends JavaPlugin implements CommandExecutor, Listener {
     private static GeometryDash instance;
+    public static HashMap<Sign, UUID> Editors = new HashMap<Sign, UUID>();
     public GeometryDash (){
         instance = this;
     }
@@ -43,7 +41,6 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
     public static GeometryDash getInstance() {
         return instance;
     }
-    public static HashSet<Player> editors = new HashSet<Player>();
     public static Location loc;
     public static Location playerlocation;
     public static World w = getWorld("GeoDash");
@@ -81,7 +78,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
                 camera.setWander(false);
                 camera.addPassenger(player);
 
-                BukkitTask repeat = new RepeatCast(this, player, slime, camera).runTaskTimer(this, 0, 1);
+                BukkitTask repeat = new RepeatCast(this, player, slime, camera, block.getLocation()).runTaskTimer(this, 0, 1);
                 pm.registerEvents(new SlimeJump(this, player, slime, camera), this);
                 player.getInventory().setHeldItemSlot(1);
                 player.getInventory().setItem(1, new ItemStack(Material.SLIME_BALL));
@@ -89,13 +86,18 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
                 player.sendMessage("スライムボールを左手持ちしながらダイヤかプリズマリンブロックを置くとそこから柱が生えてくる。そして根元壊すと全部壊れる。ネザーブロックは鉄同様当たったら死ぬ。マグマクリームで左クリックで鉄と黒曜石だけ壊す。スライムブロックを持ってると同じX座標のダイヤブロックから柱が生える");
                 PluginManager pm = getServer().getPluginManager();
                 event.setCancelled(true);
-                if(!editors.contains(player)) {
+                if(Editors == null){
+                    Editors.put(sign, player.getUniqueId());
+
+                }
+
+                else if(Editors.get(sign)!=player.getUniqueId()) {
                     //make editors a hashmap with uuid as key and list as output. list contains block materials
                     pm.registerEvents(new MapMaking(this, player, sign.getZ()), this); //change this later so that this runs only for a
                     //player who presses a minecraft button. Make pillar root blocks customizable. Do so by refactoring Material.DIAMOND...
                     //and stuff to a variable
                     BukkitTask placer = new MapMaking(this, player, sign.getZ()).runTaskTimer(this, 0, 1);
-                    editors.add(player);
+                    Editors.replace(sign, player.getUniqueId());
 
                     player.getInventory().setItem(2, new ItemStack(Material.DIAMOND_BLOCK, 1));
                     player.getInventory().setItem(3, new ItemStack(Material.PRISMARINE_BRICKS, 1));

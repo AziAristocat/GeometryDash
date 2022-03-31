@@ -92,9 +92,8 @@ public class MapMaking extends BukkitRunnable implements Listener {
                     String playerY1 = Integer.toString(y1);
                     String playerY2 = Integer.toString(y2);
                     String playerZ = Integer.toString(z);
-                    String command1 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerX2 +" "+ playerY2 + " " + playerZ + " air replace minecraft:iron_block";
-                    String command2 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ +" "+playerY2+ " " + playerZ + " 0 air replace minecraft:obsidian";
-                    Bukkit.dispatchCommand(console, "say hello");
+                    String command1 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerX2 + " " + playerY2 + " " + playerZ + " air replace minecraft:iron_block";
+                    String command2 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerY2 + " " + playerY2 + " " + playerZ + " air replace minecraft:obsidian";
                     Bukkit.dispatchCommand(console, command1);
                     Bukkit.dispatchCommand(console, command2);
                 }

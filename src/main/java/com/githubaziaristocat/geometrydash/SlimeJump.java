@@ -35,7 +35,8 @@ public class SlimeJump implements Listener {
 
 
             //if command sender = left clicker
-            if (slime != null && SlimeStatusChecker.isJumpable && player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL) {
+            if (slime != null && SlimeStatusChecker.isJumpable && player.getEquipment().getItemInMainHand().getType() == Material.SLIME_BALL
+                    && event.getPlayer() == player && player.getWorld() == GeometryDash.w) {
                 //  player.sendMessage("Jump!!!");
                 Location loc = slime.getLocation().add(-2, 4, -15);
 

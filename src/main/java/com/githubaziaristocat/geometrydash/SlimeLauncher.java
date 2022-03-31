@@ -13,11 +13,12 @@ public class SlimeLauncher {
         World w = getServer().getWorld("GeoDash");
         Location loc = new Location(w,0,0,0);
         if(slime!=null) {
-            loc = slime.getLocation().add(0,-0.8,0);
+            loc = slime.getLocation().add(0,-0.6,0);
         }
 
         if(loc.getBlock().getType() == Material.SEA_LANTERN) {
             SlimeStatusChecker.gravity=1.2;
+            SlimeStatusChecker.isJumpable=false;
         }
         }
 
