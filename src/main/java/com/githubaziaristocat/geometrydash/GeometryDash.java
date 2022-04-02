@@ -1,6 +1,7 @@
 package com.githubaziaristocat.geometrydash;
 
 import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -34,6 +36,7 @@ import static org.bukkit.Bukkit.getWorld;
 public final class GeometryDash extends JavaPlugin implements CommandExecutor, Listener {
     private static GeometryDash instance;
     public static HashMap<Sign, UUID> Editors = new HashMap<Sign, UUID>();
+    public static List<Player> playing = new ArrayList<>();
     public GeometryDash (){
         instance = this;
     }
@@ -57,14 +60,13 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBreak(BlockBreakEvent event) {
+    public void onBreak(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if(player.getEquipment().getItemInOffHand().getType() != Material.SLIME_BALL && player.getWorld().equals(w)){
-        Block block = event.getBlock();
-        if(block.getState() instanceof Sign) {
-            Sign sign = (Sign) block.getState();
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.getEquipment().getItemInOffHand().getType() != Material.SLIME_BALL && player.getWorld().equals(w)){
+        Block block = event.getClickedBlock();
+        if(block.getState() instanceof Sign sign) {
             if(sign.line(0).equals(Component.text("Start"))) {
-                event.setCancelled(true);
+                playing.add(player);
                 PluginManager pm = getServer().getPluginManager();
                 World w = getServer().getWorld("GeoDash");
                 Location startlocation = new Location(w, 0, 5, 0);

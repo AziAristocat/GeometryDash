@@ -17,7 +17,7 @@ public class SpawnSlime {
         Slime slime = (Slime) w.spawnEntity(loc, EntityType.SLIME);
             slime.setSize(2);
             slime.setWander(false);
-            slime.setCustomName("GEODY");
+//            slime.setCustomName("GEODY");
         return slime;
 
     }

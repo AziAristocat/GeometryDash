@@ -27,6 +27,7 @@ public class GameOver {
             camera.setHealth(0);
             slime = null;
             camera = null;
+            GeometryDash.playing.remove(player);
             return true;
 
         }

@@ -4,12 +4,14 @@ package com.githubaziaristocat.geometrydash;
 import net.md_5.bungee.api.chat.ItemTag;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.PlayerInventory;
@@ -31,7 +33,7 @@ public class SlimeJump implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public static void onEvent(PlayerInteractEvent event) {
-        if (event.getAction() == Action.LEFT_CLICK_AIR) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_AIR) {
 
 
             //if command sender = left clicker
@@ -51,12 +53,28 @@ public class SlimeJump implements Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public static void onFall(EntityDamageEvent falling) {
-        if (falling.getCause() == EntityDamageEvent.DamageCause.FALL
-                && (falling.getEntity() == slime
-                || falling.getEntity() == camera)) {
+    public static void onFall(EntityDamageEvent event) {
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL && event.getEntity().getWorld().equals(GeometryDash.w)
+                && (event.getEntity() == slime
+                || event.getEntity() == camera)) {
 
-            falling.setCancelled(true);
+            event.setCancelled(true);
+
+        }
+        if (event.getEntity().getWorld().equals(GeometryDash.w)
+        && event.getEntity() == player){
+            event.setCancelled((true));
+
+        }
+
+
+    }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public static void onBreak(BlockBreakEvent event) {
+
+        if (event.getPlayer().getWorld().equals(GeometryDash.w)
+                && GeometryDash.playing.contains(player)){
+            event.setCancelled((true));
 
         }
 
