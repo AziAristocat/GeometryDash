@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.block.data.type.NoteBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,6 +25,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 
 import java.util.*;
@@ -34,6 +36,7 @@ import static org.bukkit.Bukkit.getWorld;
 public final class GeometryDash extends JavaPlugin implements CommandExecutor, Listener {
     private static GeometryDash instance;
     public static HashMap<Sign, UUID> Editors = new HashMap<Sign, UUID>();
+    public static HashMap<Player, Set<Integer>> noteBlocks = new HashMap<Player, Set<Integer>>();
     public static List<Player> playing = new ArrayList<>();
     Map<UUID,ArrayList<ItemStack>> Blocks = new HashMap<>();
     public GeometryDash (){
@@ -59,15 +62,17 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBreak(PlayerInteractEvent event) {
+    public void onClick(@NotNull PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.getEquipment().getItemInOffHand().getType() != Material.SLIME_BALL && player.getWorld().equals(w)){
         Block block = event.getClickedBlock();
         if(block.getState() instanceof Sign sign) {
             if(sign.line(0).equals(Component.text("Start"))) {
+                Set<Integer> X = new HashSet<Integer>();
+                noteBlocks.put(player,X);
                 playing.add(player);
                 Blocks.remove(player.getUniqueId());
-                ArrayList<ItemStack> MapBlocks= new ArrayList();
+                ArrayList<ItemStack> MapBlocks= new ArrayList<ItemStack>();
 
                 for(int y=1; y<4; y++){
                     Collection<Entity> frames = sign.getLocation().add(0,y+0.5,0.5).getNearbyEntities(0.5,0.5,0.5);
@@ -83,7 +88,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
                     frames.clear();
                 } //same as above
 
-                player.sendMessage(MapBlocks.toString());
+//                player.sendMessage(MapBlocks.toString());
                 PluginManager pm = getServer().getPluginManager();
                 World w = getServer().getWorld("GeoDash");
                 Location startlocation = new Location(w, 0, 5, 0);
@@ -91,7 +96,11 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
                 SpawnSlime slimy = new SpawnSlime();
                 Slime slime = slimy.cube(startlocation);
                 player.sendMessage("start!!");
-                Slime camera = (Slime) w.spawnEntity(startlocation.add(2,3,-15), EntityType.SLIME);
+                Location tp = player.getLocation();
+                tp.setYaw(180);
+                tp.setPitch(0);
+                player.teleport(tp);
+                Slime camera = (Slime) w.spawnEntity(startlocation.add(2,3,15), EntityType.SLIME);
                 camera.setSize(2);
                 camera.setInvisible(true);
                 camera.setWander(false);
@@ -163,7 +172,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
             Sign sign2 = (Sign) loc.getBlock().getState();
             sign2.setEditable(false);
             for(int y=1; y<4; y++){
-                event1.getPlayer().sendMessage("aa");
+
                 w.setType(sign.getLocation().add(0,y,0), Material.BEDROCK);
                 ItemFrame frame = (ItemFrame) w.spawnEntity(sign.getLocation().add(-1,y,0), EntityType.ITEM_FRAME);
                 frame.setCustomNameVisible(false);
@@ -172,7 +181,7 @@ public final class GeometryDash extends JavaPlugin implements CommandExecutor, L
                 if(y==3)frame.setItem(new ItemStack(Material.IRON_BLOCK));
             }
             for(int y=1; y<4; y++){
-                event1.getPlayer().sendMessage("aa");
+
                 w.setType(sign.getLocation().add(0,y,1), Material.BEDROCK);
                 ItemFrame frame = (ItemFrame) w.spawnEntity(sign.getLocation().add(-1,y,1), EntityType.ITEM_FRAME);
                 if(y==1)frame.setItem(new ItemStack(Material.OBSIDIAN));

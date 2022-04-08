@@ -28,9 +28,9 @@ public class CameraMover {
             y = player.getLocation().getY();
         }
             World w = getServer().getWorld("GeoDash");;
-            Location loc = new Location(w,slime.getLocation().getX(), slime.getLocation().getY(), -15, 0,0);
+//            Location loc = new Location(w,slime.getLocation().getX(), slime.getLocation().getY(), -15, 0,0);
         if(SlimeStatusChecker.gravity>0.6 && slime.getLocation().getY()>camera.getLocation().getY()-3) {
-            Vector addVect = new Vector(0,0.15,0);
+            Vector addVect = new Vector(0,0.7,0);
             camera.setVelocity(slime.getVelocity().add(addVect));
         }else {
             camera.setVelocity(slime.getVelocity());

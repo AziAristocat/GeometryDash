@@ -102,8 +102,8 @@ public class MapMaking extends BukkitRunnable implements Listener {
 
                     String block2 = MapBlocks.get(3).getType().toString();
                     String command1 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerX2 + " " + playerY2 + " " + playerZ + " air replace minecraft:" + block1.toLowerCase();
-                    String command2 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerY2 + " " + playerY2 + " " + playerZ + " air replace minecraft:" + block2.toLowerCase();
-                    player.sendMessage(command1);
+                    String command2 = "execute at " + name + " run fill "+ playerX1 +" " + playerY1 +" " + playerZ + " " + playerX2 + " " + playerY2 + " " + playerZ + " air replace minecraft:" + block2.toLowerCase();
+
                     Bukkit.dispatchCommand(console, command1);
                     Bukkit.dispatchCommand(console, command2);
                 }

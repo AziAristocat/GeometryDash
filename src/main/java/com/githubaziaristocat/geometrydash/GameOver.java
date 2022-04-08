@@ -17,11 +17,12 @@ public class GameOver {
 
         World w = getServer().getWorld("GeoDash");
         Location trap = slime.getLocation().add(0.8,0,0);
-        if(slime != null && player.getEquipment().getItemInMainHand().getType() != Material.SLIME_BALL || w.getBlockAt(trap).getType()==MapBlocks.get(2).getType() || w.getBlockAt(trap).getType()==MapBlocks.get(5).getType()|| w.getBlockAt(trap.add(0,0.8,0)).getType()==MapBlocks.get(2).getType()) {
+        if(slime != null && player.getEquipment().getItemInMainHand().getType() != Material.SLIME_BALL || w.getBlockAt(trap).getType()==MapBlocks.get(2).getType() || w.getBlockAt(trap).getType()==MapBlocks.get(5).getType()|| w.getBlockAt(trap.add(-1.6,-0.8,0)).getType()==MapBlocks.get(5).getType()) {
             //if unequip slime ball or slime touches iron then game over.
             Location loc = new Location(w, 0, 4, -5);
-            loc = startpoint;
-            player.teleport(loc.add(-1,0,-2));
+            loc = startpoint.add(-1,0,2);
+            loc.setYaw(180);
+            player.teleport(loc);
             slime.setSize(0);
             slime.setHealth(0);
             CameraMover.y = 5;

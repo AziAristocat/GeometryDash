@@ -48,6 +48,7 @@ public class RepeatCast extends BukkitRunnable {
             BreakStuffBehind.Break(slime.getLocation().add(-10,0,0), MapBlocks);
             BreakStuffBehind.Break(slime.getLocation().add(-10,-1,0), MapBlocks);
             CameraMover.Mover(player, slime, camera);
+            PlaySound.play(slime, startpoint, player);
                 if(GameOver.Over(player, slime, camera, startpoint, MapBlocks)) {
                 cancel();
                 }

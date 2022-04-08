@@ -14,7 +14,7 @@ public class SlimeStatusChecker {
     public static void jumpable(Slime slime) {
 
 
-        Location loc = slime.getLocation().add(0, -0.5202, 0);
+        Location loc = slime.getLocation().add(0, -0.251, 0);
         World w = getServer().getWorld("GeoDash");
         if (slime != null && w.getBlockAt(loc).getType() != Material.AIR) {
             //checking whether the blokc under the slime is not air
