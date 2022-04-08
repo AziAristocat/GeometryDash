@@ -4,36 +4,39 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Slime;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 import static com.githubaziaristocat.geometrydash.GetPillarRoot.closestRoot;
 import static org.bukkit.Bukkit.getServer;
 
 public class SpawnPillar {
 
-    public static void Spawn(Location loc) {
+    public static void Spawn(Location loc, ArrayList<ItemStack> MapBlocks) {
 
 
         World w = getServer().getWorld("GeoDash");
 
-      if (closestRoot(loc, Material.DIAMOND_BLOCK) != null) {
+      if (closestRoot(loc, MapBlocks.get(0).getType()) != null) {
 
-                Location closest = closestRoot(loc, Material.DIAMOND_BLOCK);
+                Location closest = closestRoot(loc, MapBlocks.get(0).getType());
                 for (int y = 1; y < 5; y++) {
                     if (y == 4) {
                         Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
-                        pillarroot.getBlock().setType(Material.OBSIDIAN);
+                        pillarroot.getBlock().setType(MapBlocks.get(3).getType());
                     } else {
                         Location pillarroot = new Location(w, closest.getX(), closest.getY() + y, closest.getZ());
-                        pillarroot.getBlock().setType(Material.IRON_BLOCK);
+                        pillarroot.getBlock().setType(MapBlocks.get(2).getType());
 
                     }
                 }
             }
-            if (closestRoot(loc, Material.PRISMARINE_BRICKS) != null) {
-                Location closest = closestRoot(loc, Material.PRISMARINE_BRICKS);
+            if (closestRoot(loc, MapBlocks.get(1).getType()) != null) {
+                Location closest = closestRoot(loc, MapBlocks.get(1).getType());
                 for (int y = 1; y < 5; y++) {
                     Location pillarroot = new Location(w, closest.getX(), closest.getY() - y, closest.getZ());
-                    pillarroot.getBlock().setType(Material.IRON_BLOCK);
+                    pillarroot.getBlock().setType(MapBlocks.get(2).getType());
 
 
                 }
@@ -46,26 +49,26 @@ public class SpawnPillar {
 
 
     }
-    public static void Maker(Location loc){
+    public static void Maker(Location loc, ArrayList<ItemStack> MapBlocks){
         World w = getServer().getWorld("GeoDash");
-        if (loc.getBlock().getType() == Material.DIAMOND_BLOCK) {
+        if (loc.getBlock().getType() == MapBlocks.get(0).getType()) {
             for (int y = 1; y < 5; y++) {
                 if (y == 4) {
                     Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
-                    pillarroot.getBlock().setType(Material.OBSIDIAN);
+                    pillarroot.getBlock().setType(MapBlocks.get(3).getType());
                 } else {
                     Location pillarroot = new Location(w, loc.getX(), loc.getY() + y, loc.getZ());
-                    pillarroot.getBlock().setType(Material.IRON_BLOCK);
+                    pillarroot.getBlock().setType(MapBlocks.get(2).getType());
 
                 }
             }
         }
 
-        else if (loc.getBlock().getType() == Material.PRISMARINE_BRICKS) {
+        else if (loc.getBlock().getType() == MapBlocks.get(1).getType()) {
 
             for (int y = 1; y < 5; y++) {
                 Location pillarroot = new Location(w, loc.getX(), loc.getY() - y, loc.getZ());
-                pillarroot.getBlock().setType(Material.IRON_BLOCK);
+                pillarroot.getBlock().setType(MapBlocks.get(2).getType());
 
 
             }

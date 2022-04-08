@@ -43,7 +43,7 @@ public class SlimeJump implements Listener {
                 Location loc = slime.getLocation().add(-2, 4, -15);
 
 
-                SlimeStatusChecker.gravity = 0.73;  //jump height
+                SlimeStatusChecker.gravity = 0.8;  //jump height
 
                 SlimeStatusChecker.isJumpable = false;
             }

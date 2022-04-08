@@ -3,12 +3,15 @@ package com.githubaziaristocat.geometrydash;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Slime;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 public class BreakStuffBehind {
-    public static void Break(Location CheckPos){
+    public static void Break(Location CheckPos, ArrayList<ItemStack> MapBlocks){
 
-        Location BreakUp = GetPillarRoot.closestRoot(CheckPos, Material.DIAMOND_BLOCK);
-        Location BreakDown = GetPillarRoot.closestRoot(CheckPos, Material.PRISMARINE_BRICKS);
+        Location BreakUp = GetPillarRoot.closestRoot(CheckPos, MapBlocks.get(0).getType());
+        Location BreakDown = GetPillarRoot.closestRoot(CheckPos, MapBlocks.get(1).getType());
         if (BreakUp!=null) {
 
 
